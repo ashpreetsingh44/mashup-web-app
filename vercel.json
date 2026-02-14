@@ -3,6 +3,7 @@
     { "src": "api/index.py", "use": "@vercel/python" }
   ],
   "routes": [
+    { "src": "/style.css", "dest": "/style.css" },
     { "src": "/(.*)", "dest": "api/index.py" }
   ]
 }
