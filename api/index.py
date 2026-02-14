@@ -1,7 +1,12 @@
 from flask import Flask, request, send_file, render_template
 import zipfile
 
-app = Flask(__name__, template_folder="../templates")
+app = Flask(
+    __name__,
+    template_folder="../templates",
+    static_folder="../static",
+    static_url_path="/static"
+)
 
 @app.route("/")
 def home():
