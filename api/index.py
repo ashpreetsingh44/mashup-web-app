@@ -3,17 +3,16 @@ import zipfile
 
 app = Flask(__name__, template_folder="../templates")
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def home():
     return render_template("index.html")
 
 @app.route("/download", methods=["POST"])
 def download():
-    singer = request.form.get("singer")
-    zipname = "mashup.zip"
+    singer = request.form.get("singer", "Unknown")
+    zipname = "/tmp/mashup.zip"
+
     with zipfile.ZipFile(zipname, "w") as z:
         z.writestr("result.txt", f"Mashup generated for {singer}")
-    return send_file(zipname, as_attachment=True)
 
-def handler(request):
-    return app(request.environ, lambda *args: None)
+    return send_file(zipname, as_attachment=True)
